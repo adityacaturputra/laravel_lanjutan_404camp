@@ -18,6 +18,11 @@ Route::get('/auth', [\App\Http\Controllers\AuthController::class, 'auth']);
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'findAll']);
 Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 'findOne']);
 
+Route::post('/orders', [\App\Http\Controllers\OrderController::class, 'store']);
+Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'findAll']);
+Route::patch('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'update']);
+Route::delete('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'delete']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
