@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authorization');
+    }
+
     public function store(){
         // cari data product berdasarkan product_id
         $product = Product::find(\request('product_id'));
