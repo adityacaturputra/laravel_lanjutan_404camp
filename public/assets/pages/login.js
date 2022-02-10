@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", (c) => {
     const handleSuccess = (msg) => {
         alert(`selamat datang ${msg.data.first_name} ${msg.data.last_name}`)
         window.localStorage.setItem('token', msg.data.token)
-        window.location = '/list/order'
+        window.location = '/list-order'
     }
     
     const handleError = (req, status, err) => {

@@ -17,5 +17,5 @@
             </div>
         </div>
     </div>
-    <script src="assets/pages/login.js"></script>
+    <script src="{{url('/assets/pages/login.js')}}"></script>
 @endsection
