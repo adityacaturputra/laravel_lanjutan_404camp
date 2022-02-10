@@ -58,6 +58,10 @@ class OrderController extends Controller
         return BaseController::out(data: $data, status: 'OK');
     }
 
+    public function findOne(Order $order) {
+        return BaseController::out(data: $order, status: 'OK');
+    }
+
     public function update(Order $order) {
         $product = Product::find(\request('product_id'));
 

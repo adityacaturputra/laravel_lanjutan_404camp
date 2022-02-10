@@ -20,8 +20,11 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 'f
 
 Route::post('/orders', [\App\Http\Controllers\OrderController::class, 'store']);
 Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'findAll']);
+Route::get('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'findOne']);
 Route::patch('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'update']);
 Route::delete('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'delete']);
+
+Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'findAll']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
