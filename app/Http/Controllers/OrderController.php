@@ -46,14 +46,23 @@ class OrderController extends Controller
             $order->where('products.title', 'like', "%$q%");
         }
 
-        $data = $order->paginate(
-            10,
-            [
+        if(\request()->has('page')){
+            $data = $order->paginate(
+                10,
+                [
+                    'orders.*',
+                    'customers.first_name', 'customers.last_name', 'customers.address', 'customers.city',
+                    'products.title as product_title'
+                ]
+            );
+        } else {
+            $data = $order->select(
                 'orders.*',
                 'customers.first_name', 'customers.last_name', 'customers.address', 'customers.city',
                 'products.title as product_title'
-            ]
-        );
+            )->get();
+        }
+
 
         return BaseController::out(data: $data, status: 'OK');
     }

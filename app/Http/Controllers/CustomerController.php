@@ -10,18 +10,21 @@ class CustomerController extends Controller
     public function findAll() {
         $order = Customer::query();
 
-        if(\request()->has('q')){
-            $q = \request('q');
+        if(request()->has('q')){
+            $q = request('q');
             $order->where('email', 'like', "%$q%");
         }
 
-        $data = $order->paginate(
-            10,
-            [
-                'id', 'first_name', 'last_name', 'address', 'city',
-            ]
-        );
-
+        if(request()->has('page')){
+            $data = $order->paginate(
+                10,
+                [
+                    'id', 'first_name', 'last_name', 'address', 'city', 'email'
+                ]
+            );
+        } else {
+            $data = $order->select('id', 'first_name', 'last_name', 'address', 'city')->get();
+        }
         return BaseController::out(data: $data, status: 'OK');
     }
 }

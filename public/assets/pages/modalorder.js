@@ -5,7 +5,7 @@ function fillCustomer() {
         dataType: 'json',
         headers: {'token': window.localStorage['token']},
         success: (res) => {
-            const data = res.data.data;
+            const data = res.data;
             let content = '';
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
@@ -29,7 +29,7 @@ function fillProduct() {
         dataType: 'json',
         headers: {'token': window.localStorage['token']},
         success: (res) => {
-            const data = res.data.data;
+            const data = res.data;
             let content = '';
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
@@ -77,6 +77,10 @@ document.addEventListener('DOMContentLoaded', (c) => {
     $('button#simpan').on('click', (e) => {
         const id = $('input[name=id]').val()
         console.log(id)
-        save(id)
+        if(id){
+            save(id)
+        } else {
+            save()
+        }
     })
 })

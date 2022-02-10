@@ -8,10 +8,16 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function findAll() {
-        $data = Product::paginate(
-            20,
-            ['id', 'title', 'category', 'price', 'stock', 'free_shipping', 'rate']
-        );
+        
+        if(request()->has('page')){
+            $data = Product::paginate(
+                20,
+                ['id', 'title', 'category', 'price', 'stock', 'free_shipping', 'rate']
+            );
+        } else {
+            $data = Product::select('id', 'title', 'category', 'price', 'stock', 'free_shipping', 'rate')->get();
+        }
+        
         if(count($data) == 0) {
             return BaseController::out(data: [], status: 'Kosong', code: 204);
         } else {

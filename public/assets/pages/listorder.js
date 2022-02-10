@@ -6,7 +6,7 @@ function refreshData() {
         headers: {'token': window.localStorage['token']},
         success: (res) => {
             console.log(res);
-            const data = res.data.data;
+            const data = res.data;
             let content = '';
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
